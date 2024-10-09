@@ -14,16 +14,22 @@ public class TextBoxTest {
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
         Configuration.browserSize = "1920*1080";
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @Test
     void fillFormTest() {
-        open("https://demoqa.com/text-box");
-        $("#userName").setValue("aa");
+        open("/text-box");
+        $("#userName").setValue("QQ");
         $("#userEmail").setValue("luzan@mail.com");
         $("#currentAddress").setValue("ulica");
         $("#permanentAddress").setValue("prosperkt");
         $("#submit").click();
+
+        $("#output #name").shouldHave(text("QQ"));
+        $("#output #email").shouldHave(text("luzan@mail.com"));
+        $("#output #currentAddress").shouldHave(text("ulica"));
+        $("#output #permanentAddress").shouldHave(text("prosperkt"));
 
 
     }
